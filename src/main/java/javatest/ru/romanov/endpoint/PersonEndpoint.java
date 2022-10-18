@@ -16,6 +16,7 @@ import javatest.ru.romanov.service.PersonService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/persons")
@@ -34,12 +35,12 @@ public class PersonEndpoint {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PersonOutput>> getAll(Pageable pageable) {
+    public ResponseEntity<List<PersonOutput>> getAll() {
         log.info("Запрос на получение всех личностей был сделан.");
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(service.getAll(pageable));
+                .body(service.getAll());
     }
 
     @PostMapping

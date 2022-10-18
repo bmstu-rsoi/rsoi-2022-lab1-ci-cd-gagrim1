@@ -38,6 +38,13 @@ public class PersonService {
                 .orElseThrow(() -> new RuntimeException("Человек с таким идентификатором не найден!"));
     }
 
+    public List<PersonOutput> getAll() {
+        return repository.findAll()
+                .stream()
+                .map(this::convert)
+                .collect(Collectors.toList());
+    }
+
     public Page<PersonOutput> getAll(Pageable pageable) {
         List<PersonOutput> persons = repository.findAll()
                 .stream()
