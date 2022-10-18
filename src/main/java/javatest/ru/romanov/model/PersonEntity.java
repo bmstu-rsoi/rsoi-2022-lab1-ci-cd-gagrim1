@@ -20,6 +20,6 @@ public class PersonEntity implements Serializable {
     private String address;
     @Column(name = "age", precision = 3)
     private Short age;
-    @Column(name = "job", length = 128)
-    private String job;
+    @Column(name = "work", length = 128)
+    private String work;
 }

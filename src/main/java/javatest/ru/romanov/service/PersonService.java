@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class PersonService {
     private final PersonRepository repository;
 
-    public PersonEntity save(PersonInput input) {
+    public Long save(PersonInput input) {
         if (input == null) {
             throw new RuntimeException("Переданы пустые входные данные!");
         }
@@ -27,8 +27,9 @@ public class PersonService {
         person.setName(input.getName());
         person.setAddress(input.getAddress());
         person.setAge(input.getAge());
-        person.setJob(input.getJob());
-        return repository.save(person);
+        person.setWork(input.getWork());
+        repository.save(person);
+        return person.getId();
     }
 
     public PersonOutput findById(Long id) {
@@ -51,7 +52,7 @@ public class PersonService {
         entity.setName(input.getName());
         entity.setAddress(input.getAddress());
         entity.setAge(input.getAge());
-        entity.setJob(input.getJob());
+        entity.setWork(input.getWork());
         return repository.save(entity);
     }
 
@@ -64,13 +65,13 @@ public class PersonService {
                 );
     }
 
-    private PersonOutput convert(PersonEntity entity) {
+    public PersonOutput convert(PersonEntity entity) {
         return new PersonOutput(
                 entity.getId(),
                 entity.getName(),
                 entity.getAddress(),
                 entity.getAge(),
-                entity.getJob()
+                entity.getWork()
         );
     }
 }

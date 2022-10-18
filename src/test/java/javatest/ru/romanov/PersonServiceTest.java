@@ -13,12 +13,14 @@ import org.mockito.MockitoAnnotations;
 import javatest.ru.romanov.model.PersonEntity;
 import javatest.ru.romanov.service.PersonService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.times;
 
@@ -48,12 +50,17 @@ public class PersonServiceTest {
     @Test
     void shouldGetAllPersons() {
         List<PersonEntity> persons = new ArrayList<>();
+        List<PersonOutput> personOutputs = persons
+                .stream()
+                .map(service::convert)
+                .collect(Collectors.toList());
         Pageable pageable = PageRequest.of(1, 1);
+        Page<PersonOutput> expected = new PageImpl<> (personOutputs, pageable, personOutputs.size());
 
         Mockito.when(repository.findAll()).thenReturn(persons);
 
         Page<PersonOutput> actual = service.getAll(pageable);
-        Assertions.assertEquals(persons, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -67,14 +74,12 @@ public class PersonServiceTest {
         expected.setName(input.getName());
         expected.setAddress(input.getAddress());
         expected.setAge(input.getAge());
-        expected.setJob(input.getJob());
+        expected.setWork(input.getWork());
 
         Mockito.when(repository.save(expected)).thenReturn(expected);
 
-        PersonEntity actual = service.save(input);
+        service.save(input);
         Mockito.verify(repository, times(1)).save(expected);
-
-        Assertions.assertEquals(expected, actual);
     }
 
     @Test
