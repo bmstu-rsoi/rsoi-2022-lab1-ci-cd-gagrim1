@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-alpine
+FROM openjdk:17-jdk-alpine
 RUN mkdir /app
 WORKDIR app
 EXPOSE 8080
