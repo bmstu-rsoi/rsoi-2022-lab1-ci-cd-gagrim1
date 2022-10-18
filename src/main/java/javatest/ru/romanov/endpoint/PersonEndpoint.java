@@ -18,7 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/persons")
+@RequestMapping("/api/v1/persons")
 @RequiredArgsConstructor
 @Slf4j
 public class PersonEndpoint {
