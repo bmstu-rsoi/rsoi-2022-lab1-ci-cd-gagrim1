@@ -45,6 +45,12 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
 
+      - name: Sleep
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: 60
+
+
       - name: Run API Tests
         id: run-newman
         uses: anthonyvscode/newman-action@v1
