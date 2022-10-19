@@ -25,7 +25,7 @@ import java.util.List;
 public class PersonEndpoint {
     private final PersonService service;
 
-    @GetMapping("/{personId}")
+    @GetMapping(value = "/{personId}", produces = "application/json")
     public ResponseEntity<PersonOutput> getById(@PathVariable("personId") Long personId) {
         log.info("Запрос на получение личности по идентификатору " + personId +  " был сделан.");
 
@@ -34,7 +34,7 @@ public class PersonEndpoint {
                 .body(service.findById(personId));
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public ResponseEntity<List<PersonOutput>> getAll() {
         log.info("Запрос на получение всех личностей был сделан.");
 
@@ -43,14 +43,16 @@ public class PersonEndpoint {
                 .body(service.getAll());
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<?> save(@RequestBody @Valid PersonInput input) {
         log.info("Запрос на создание личности был сделан.");
+
+        Long id = service.save(input);
 
         String location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{personId}")
-                .buildAndExpand(service.save(input))
+                .buildAndExpand(id)
                 .getPath();
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.LOCATION, location);

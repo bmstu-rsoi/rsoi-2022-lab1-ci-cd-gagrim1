@@ -2,6 +2,11 @@ plugins {
     id "java"
     id "org.springframework.boot" version "2.6.0"
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id ("jacoco")
+}
+
+jacoco {
+    toolVersion = "0.8.7"
 }
 
 ext {
@@ -22,6 +27,9 @@ dependencies {
     implementation "org.springdoc:springdoc-openapi-ui:${openApiVersion}"
     compileOnly "org.projectlombok:lombok:"
     annotationProcessor "org.projectlombok:lombok"
+    testAnnotationProcessor("org.projectlombok:lombok")
+    testCompileOnly("org.projectlombok:lombok")
+    testImplementation("com.h2database:h2")
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "org.apache.commons:commons-lang3"
@@ -29,6 +37,13 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy(jacocoTestReport)
+}
+
+jacocoTestReport {
+    reports {
+        xml.required.set(true)
+    }
 }
 
 springBoot {
