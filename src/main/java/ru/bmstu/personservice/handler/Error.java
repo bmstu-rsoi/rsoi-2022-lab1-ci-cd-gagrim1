@@ -1,4 +1,4 @@
-package javatest.ru.romanov.handler;
+package ru.bmstu.personservice.handler;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

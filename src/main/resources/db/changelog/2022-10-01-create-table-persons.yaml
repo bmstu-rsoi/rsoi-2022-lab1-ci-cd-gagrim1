@@ -1,0 +1,29 @@
+databaseChangeLog:
+    - changeSet:
+        id: create-table-persons
+        author: nikitarubstov99@gmail.com
+        changes:
+            - createTable:
+                tableName: persons
+                columns:
+                    - column:
+                        name: id
+                        type: integer
+                        autoIncrement: true
+                        constraints: 
+                            nullable: false
+                            primaryKey: true
+                    - column:
+                        name: name
+                        type: varchar(255)
+                        constraints: 
+                            nullable: false
+                    - column:
+                        name: age
+                        type: integer
+                    - column:
+                        name: address
+                        type: varchar(255)
+                    - column:
+                        name: work
+                        type: varchar(255)

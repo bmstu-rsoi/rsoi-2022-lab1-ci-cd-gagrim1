@@ -1,0 +1,4 @@
+databaseChangeLog:
+    - include:
+        file: 2022-10-01-create-table-persons.yaml
+        relativeToChangelogFile: true

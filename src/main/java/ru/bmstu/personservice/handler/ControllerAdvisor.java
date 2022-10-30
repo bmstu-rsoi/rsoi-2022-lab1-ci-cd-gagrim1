@@ -1,4 +1,4 @@
-package javatest.ru.romanov.handler;
+package ru.bmstu.personservice.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.persistence.EntityNotFoundException;
 
 @ControllerAdvice
-public class PersonEndpointHandler {
-    public static String msgEntityNotFound = "ERROR: личность не найдена.";
-    public static String msgWrongId = "ERROR: личность с id не найдена.";
-    public static String msgWrongArgument = "ERROR: неверные входные данные.";
+public class ControllerAdvisor {
+    public static String msgEntityNotFound = "ERROR: person was not found.";
+    public static String msgWrongId = "ERROR: person with research id was not found.";
+    public static String msgWrongArgument = "ERROR: wrong input argument.";
 
 
     @ExceptionHandler(EntityNotFoundException.class)

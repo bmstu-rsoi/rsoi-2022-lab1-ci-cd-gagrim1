@@ -1,0 +1,8 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.yaml
+  datasource:
+    url: jdbc:postgresql://ec2-54-228-32-29.eu-west-1.compute.amazonaws.com:5432/d83cq2gpd8j8em
+    username: mxvfuksadelsfh
+    password: 587e77fbcc048abe3feb3dc904bb6676116dc9b3fa27d72e8abdd2d6edd2720c

@@ -1,8 +1,0 @@
-spring:
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-  datasource:
-    url: jdbc:postgresql://ec2-54-160-200-167.compute-1.amazonaws.com:5432/d2ndkg3mithbe9
-    username: ojtraqsojiobac
-    password: 9a2bb6891040d6bdc7a8d34c34bf4dd52e5958ff8d864952031d52c4928e7875
