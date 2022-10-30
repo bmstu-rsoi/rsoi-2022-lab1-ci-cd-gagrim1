@@ -64,12 +64,12 @@ public class PersonEndpoint {
     }
 
     @PatchMapping
-    public ResponseEntity<PersonEntity> update(@RequestParam Long id, @RequestBody @Valid PersonInput input) {
-        log.info("Запрос на обвновление личности с идентификатором " + id + " был сделан.");
+    public ResponseEntity<PersonEntity> update(@RequestParam Long personId, @RequestBody @Valid PersonInput input) {
+        log.info("Запрос на обвновление личности с идентификатором " + personId + " был сделан.");
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(service.update(id, input));
+                .body(service.update(personId, input));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
